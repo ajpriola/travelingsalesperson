@@ -1,3 +1,5 @@
+package tsp;
+
 import java.util.ArrayList;
 
 public class Tour {
@@ -32,5 +34,4 @@ public class Tour {
 
         return tour;
     }
-
 }

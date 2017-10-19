@@ -1,3 +1,5 @@
+package tsp;
+
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -43,7 +45,6 @@ public class TSP {
                     }
                 }
             }
-
 
             Node.nodes = nodes;
 

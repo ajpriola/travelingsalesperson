@@ -1,3 +1,5 @@
+package tsp;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.ArrayList;
@@ -6,9 +8,9 @@ public class Node {
 
     static Node[] nodes;
 
-    int index;
-    int x;
-    int y;
+    final int index;
+    final int x;
+    final int y;
 
     ArrayList<Node> ordered;
 
@@ -24,11 +26,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return "Node{" +
-                "index=" + index +
-                ", x=" + x +
-                ", y=" + y +
-                '}';
+        return String.format("{ tsp.Node: %d, (%d, %d) }", index, x, y);
     }
 
     static void preprocess() {
