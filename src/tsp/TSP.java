@@ -4,21 +4,27 @@ import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.function.Consumer;
 
 public class TSP {
 
-    public static void main(String[] args) {
+    public static Tour tour(String path) {
+        return tour(new File(path), null);
+    }
 
-        File data = new File(args[0]);
+    public static Tour tour(File data) {
+        return tour(data, null);
+    }
 
+    public static Tour tour(File data, Consumer<Double> progress) {
         BufferedReader reader = null;
+
+        Node[] nodes = new Node[0];
 
         try {
             String line;
 
             reader = new BufferedReader(new FileReader(data));
-
-            Node[] nodes = new Node[0];
 
             while ((line = reader.readLine()) != null) {
 
@@ -38,32 +44,39 @@ public class TSP {
 
                         String[] arr = node.trim().split("[ \\t]+");
                         int index = Integer.parseInt(arr[0]);
-                        int x = Integer.parseInt(arr[1]);
-                        int y = Integer.parseInt(arr[2]);
+                        double x = Double.parseDouble(arr[1]);
+                        double y = Double.parseDouble(arr[2]);
 
                         nodes[index - 1] = new Node(x, y, index);
                     }
                 }
             }
 
-            Node.nodes = nodes;
-
-            Node.preprocess();
-
-            Tour tour = Tour.optimized();
-
-            System.out.println(tour.route.toString());
-            System.out.println(tour.distance);
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
                 if (reader != null) reader.close();
-
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
+
+        Node.nodes = nodes;
+
+        Node.preprocess();
+
+        Tour tour = Tour.optimized(progress);
+
+        System.out.println(tour.route.toString());
+        System.out.println(tour.distance);
+
+        return tour;
+    }
+
+    public static void main(String[] args) {
+
+        tour(args[0]);
+
     }
 }

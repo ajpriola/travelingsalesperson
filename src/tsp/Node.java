@@ -8,13 +8,13 @@ public class Node {
 
     static Node[] nodes;
 
-    final int index;
-    final int x;
-    final int y;
+    public final int index;
+    public final double x;
+    public final double y;
 
     ArrayList<Node> ordered;
 
-    public Node(int x, int y, int index) {
+    public Node(double x, double y, int index) {
         this.x = x;
         this.y = y;
         this.index = index;
@@ -26,7 +26,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return String.format("{ tsp.Node: %d, (%d, %d) }", index, x, y);
+        return String.format("{ tsp.Node: %d, (%f, %f) }", index, x, y);
     }
 
     static void preprocess() {
