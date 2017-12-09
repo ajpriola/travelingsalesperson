@@ -62,6 +62,8 @@ public class TSP {
             }
         }
 
+        long start = System.currentTimeMillis();
+
         Node.nodes = nodes;
 
         Node.preprocess();
@@ -70,6 +72,10 @@ public class TSP {
 
         System.out.println(tour.route.toString());
         System.out.println(tour.distance);
+
+        long end = System.currentTimeMillis();
+
+        System.out.println("MS: " + (end - start));
 
         return tour;
     }
